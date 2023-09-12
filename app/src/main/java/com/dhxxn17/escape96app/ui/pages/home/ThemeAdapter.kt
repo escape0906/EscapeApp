@@ -15,6 +15,12 @@ class ThemeAdapter : RecyclerView.Adapter<ThemeAdapter.ThemeViewHolder>() {
     private val list = mutableListOf<Theme>()
     var onClick: (Theme) -> Unit = {}
 
+    fun updateData(themes: List<Theme>) {
+        this.list.clear()
+        this.list.addAll(themes)
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -42,9 +48,8 @@ class ThemeAdapter : RecyclerView.Adapter<ThemeAdapter.ThemeViewHolder>() {
         fun bind(theme: Theme) {
             Glide.with(itemView)
                 .load(theme.thumbnail)
-                .centerCrop()
                 .into(image)
-
+            image.clipToOutline = true
             title.text = theme.title
             location.text = theme.location
         }
