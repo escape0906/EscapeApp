@@ -29,7 +29,10 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/round_rectange"
-                    android:padding="10dp">
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="5dp">
 
                     <EditText
                         android:id="@+id/et_search"
@@ -41,6 +44,7 @@
                         android:textSize="16sp"
                         android:hint="매장명, 테마명을 검색해보세요"
                         android:inputType="text"
+                        android:fontFamily="@font/notosansregular"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/imageView"
                         app:layout_constraintStart_toStartOf="parent"
@@ -59,130 +63,74 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="15dp"
+                    android:layout_marginVertical="10dp"
                     android:padding="8dp">
 
-                    <LinearLayout
-                        android:id="@+id/linearLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        app:layout_constraintBottom_toBottomOf="parent"
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanssemibold"
+                        android:includeFontPadding="false"
+                        android:text="종류별 모아보기"
+                        android:textColor="@color/energetic_green"
+                        android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <LinearLayout
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosansregular"
+                        android:includeFontPadding="false"
+                        android:text="취향대로 테마 골라볼래요?"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:background="@drawable/round_rectange"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:contentDescription=""
+                            android:src="@drawable/location"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:fontFamily="@font/notosansregular"
+                            android:includeFontPadding="false"
+                            android:text="위치별"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-                            <ImageView
-                                android:id="@+id/imageView2"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_gravity="center"
-                                android:background="@drawable/background_circle"
-                                android:padding="15dp"
-                                app:srcCompat="@drawable/pin" />
 
-                            <TextView
-                                android:id="@+id/textView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="위치별"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
-                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <LinearLayout
-                            android:id="@+id/store_btn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/store_img"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_gravity="center"
-                                android:background="@drawable/background_circle"
-                                android:padding="15dp"
-                                app:srcCompat="@drawable/shop" />
-
-                            <TextView
-                                android:id="@+id/store_title"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="매장별"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/level_btn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/level_img"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_gravity="center"
-                                android:background="@drawable/background_circle"
-                                android:padding="15dp"
-                                app:srcCompat="@drawable/signal" />
-
-                            <TextView
-                                android:id="@+id/level_title"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="난이도별"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/genre_btn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/genre_img"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_gravity="center"
-                                android:background="@drawable/background_circle"
-                                android:padding="15dp"
-                                app:srcCompat="@drawable/dj" />
-
-                            <TextView
-                                android:id="@+id/genre_title"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="장르별"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
-                        </LinearLayout>
-                    </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <View
@@ -190,6 +138,14 @@
                     android:layout_height="8dp"
                     android:background="@color/light_gray_03"
                     android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="요즘 핫한 테마들🔥"
+                    android:textSize="17sp"
+                    android:fontFamily="@font/notosanssemibold"
+                    android:textColor="@color/black"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/home_themeList"

@@ -21,10 +21,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/light_gray_06"
-        android:textSize="11sp"
+        android:textSize="12sp"
         android:maxLines="1"
         android:ellipsize="end"
+        android:fontFamily="@font/notosansregular"
         android:layout_marginTop="3dp"
+        android:includeFontPadding="false"
         android:text="테마 매장명" />
 
     <TextView
@@ -36,5 +38,7 @@
         android:layout_marginTop="2dp"
         android:maxLines="1"
         android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/notosansmedium"
         android:text="테마명" />
 </LinearLayout>
