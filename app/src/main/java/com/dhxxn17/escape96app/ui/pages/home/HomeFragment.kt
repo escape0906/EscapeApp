@@ -1,5 +1,9 @@
 package com.dhxxn17.escape96app.ui.pages.home
 
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.dhxxn17.escape96app.R
@@ -24,7 +28,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     override fun init() {
 
-        requireDataBinding().homeThemeList.adapter = adapter
+        with(requireDataBinding()) {
+            homeThemeList.adapter = adapter
+
+            val span = SpannableStringBuilder("취향에 맞는\\n방탈출 테마를 찾아보세요!")
+            span.setSpan(StyleSpan(Typeface.BOLD), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            homeTitle.text = span
+        }
+
+
 
         observeData()
 
