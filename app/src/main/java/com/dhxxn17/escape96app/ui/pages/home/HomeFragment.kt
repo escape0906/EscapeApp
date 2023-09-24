@@ -6,6 +6,8 @@ import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.dhxxn17.escape96app.R
 import com.dhxxn17.escape96app.data.Theme
 import com.dhxxn17.escape96app.databinding.FragmentHomeBinding
@@ -30,12 +32,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         with(requireDataBinding()) {
             homeThemeList.adapter = adapter
+            adapter.apply { onClick = this@HomeFragment::goToDetail }
         }
 
-
-
         observeData()
-
 
     }
 
@@ -59,6 +59,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         )
         adapter.updateData(list)
 
+    }
+
+    private fun goToDetail(theme: Theme) {
+        val item = arrayListOf<Theme>(theme)
+       requireView().findNavController().navigate( HomeFragmentDirections.actionHomeToDetailFragment(item.toTypedArray()))
     }
 
 }

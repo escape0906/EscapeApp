@@ -9,6 +9,22 @@
         android:name="com.dhxxn17.escape96app.ui.pages.home.HomeFragment"
         android:label="HomeFragment">
 
+        <action
+            android:id="@+id/actionHomeToDetailFragment"
+            app:destination="@id/detailFragment"/>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.dhxxn17.escape96app.ui.pages.detail.DetailFragment"
+        android:label="DetailFragment">
+
+        <argument
+            android:name="value"
+            app:argType="com.dhxxn17.escape96app.data.Theme[]"/>
+
     </fragment>
 
     <fragment
