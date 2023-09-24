@@ -30,10 +30,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         with(requireDataBinding()) {
             homeThemeList.adapter = adapter
-
-            val span = SpannableStringBuilder("취향에 맞는\\n방탈출 테마를 찾아보세요!")
-            span.setSpan(StyleSpan(Typeface.BOLD), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            homeTitle.text = span
         }
 
 
