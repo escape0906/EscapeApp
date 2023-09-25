@@ -33,6 +33,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         with(requireDataBinding()) {
             homeThemeList.adapter = adapter
             adapter.apply { onClick = this@HomeFragment::goToDetail }
+
+            searchBtn.setOnClickListener {
+                findNavController().navigate(R.id.actionHomeToSearchFragment)
+            }
         }
 
         observeData()

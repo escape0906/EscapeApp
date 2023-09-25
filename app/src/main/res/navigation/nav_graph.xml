@@ -13,6 +13,9 @@
             android:id="@+id/actionHomeToDetailFragment"
             app:destination="@id/detailFragment"/>
 
+        <action
+            android:id="@+id/actionHomeToSearchFragment"
+            app:destination="@+id/searchFragment"/>
 
     </fragment>
 

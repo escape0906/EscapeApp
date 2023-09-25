@@ -29,7 +29,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     override fun init() {
         val theme = args.value.toCollection(ArrayList())[0]
-        Log.d("data : ", "$theme")
         setUi(theme)
     }
 
