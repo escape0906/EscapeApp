@@ -225,7 +225,7 @@
                 android:textColor="@color/white"
                 android:includeFontPadding="false"
                 android:fontFamily="@font/notosanssemibold"
-                android:backgroundTint="@color/deep_green"
+                android:backgroundTint="@color/green"
                 android:background="@drawable/round_rectange"
                 android:text="예약하러 가기" />
 

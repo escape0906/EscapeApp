@@ -37,6 +37,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             searchBtn.setOnClickListener {
                 findNavController().navigate(R.id.actionHomeToSearchFragment)
             }
+
+            userBtn.setOnClickListener {
+                findNavController().navigate(R.id.actionHomeToMyFragment)
+            }
         }
 
         observeData()

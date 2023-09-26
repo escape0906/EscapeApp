@@ -17,6 +17,10 @@
             android:id="@+id/actionHomeToSearchFragment"
             app:destination="@+id/searchFragment"/>
 
+        <action
+            android:id="@+id/actionHomeToMyFragment"
+            app:destination="@+id/myFragment"/>
+
     </fragment>
 
     <fragment
@@ -34,6 +38,13 @@
         android:id="@+id/searchFragment"
         android:name="com.dhxxn17.escape96app.ui.pages.search.SearchFragment"
         android:label="SearchFragment">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/myFragment"
+        android:name="com.dhxxn17.escape96app.ui.pages.my.MyFragment"
+        android:label="MyFragment">
 
     </fragment>
 
