@@ -24,6 +24,10 @@ class HomeViewModel @Inject constructor(
     val errorMessage: LiveData<String>
         get() = _message
 
+    init {
+        getAllThemeList()
+    }
+
     fun getAllThemeList() {
         viewModelScope.launch {
             val response = homeUseCase.getAllThemes()

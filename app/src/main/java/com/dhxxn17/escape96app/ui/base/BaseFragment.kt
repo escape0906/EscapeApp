@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewTreeLifecycleOwner
 import java.lang.IllegalStateException
 
 abstract class BaseFragment<B: ViewDataBinding>(
@@ -29,7 +28,6 @@ abstract class BaseFragment<B: ViewDataBinding>(
         return onCreateBinding(inflater, container)
             .also { _binding = it }
             .root
-            .also { ViewTreeLifecycleOwner.set(it, viewLifecycleOwner) }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

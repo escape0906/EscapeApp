@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace 'com.dhxxn17.escape96app'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.dhxxn17.escape96app"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -61,7 +61,6 @@ dependencies {
     // hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
-    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
 
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
