@@ -14,6 +14,14 @@
     <color name="cheery_yellow">#FFF383</color>
     <color name="green">#76C071</color>
 
+    <color name="lime_green">#32CD32</color>
+    <color name="sgbus_green">#93DC5C</color>
+    <color name="light_green">#B7E892</color>
+    <color name="tea_green">#DBF3C9</color>
+    <color name="lime">#C3F550</color>
+
+    <color name="text">#67C2A3</color>
+
     <color name="light_gray_01">#F5F5F5</color>
     <color name="light_gray_02">#FAFAFA</color>
     <color name="light_gray_03">#ECECEC</color>

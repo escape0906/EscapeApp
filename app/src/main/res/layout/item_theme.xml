@@ -39,6 +39,6 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:includeFontPadding="false"
-        android:fontFamily="@font/notosansmedium"
+        android:fontFamily="@font/notosansregular"
         android:text="테마명" />
 </LinearLayout>

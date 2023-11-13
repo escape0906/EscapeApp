@@ -11,7 +11,7 @@ fun listMapper(
     if (response.isSuccessful) {
         response.body()?.let{ _response ->
             return NetworkResponse.Success(
-                body = _response.list.map {
+                body = _response.content.map {
                     Theme(
                         title = it.title,
                         location = it.location,

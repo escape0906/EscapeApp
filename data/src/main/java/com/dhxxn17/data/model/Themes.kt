@@ -1,7 +1,7 @@
 package com.dhxxn17.data.model
 
 data class ResponseThemes(
-    val list: List<Themes>
+    val content: List<Themes>
 )
 
 data class Themes(
