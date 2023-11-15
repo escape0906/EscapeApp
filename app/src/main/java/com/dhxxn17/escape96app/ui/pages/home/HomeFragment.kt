@@ -5,10 +5,12 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.dhxxn17.escape96app.R
 import com.dhxxn17.escape96app.data.Theme
 import com.dhxxn17.escape96app.databinding.FragmentHomeBinding
@@ -20,6 +22,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val adapter = ThemeAdapter()
     private val viewModel by activityViewModels<HomeViewModel>()
+    private var isTop = true
 
     override fun onCreateBinding(
         inflater: LayoutInflater,
@@ -35,6 +38,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         with(requireDataBinding()) {
             homeThemeList.adapter = adapter
             adapter.apply { onClick = this@HomeFragment::goToDetail }
+
+            scrollTopButton.setOnClickListener {
+                homeThemeList.smoothScrollToPosition(0)
+                scrollView.smoothScrollTo(0, 0)
+            }
+
+            scrollView.setOnScrollChangeListener { view, i, i2, i3, i4 ->
+                if (!scrollView.canScrollVertically(-1)
+                    && i == RecyclerView.SCROLL_STATE_IDLE) {
+                    scrollTopButton.visibility = View.GONE
+                    isTop = true
+                } else {
+                    if (isTop) {
+                        scrollTopButton.visibility = View.VISIBLE
+                        isTop = false
+                    }
+                }
+            }
         }
 
         observeData()
