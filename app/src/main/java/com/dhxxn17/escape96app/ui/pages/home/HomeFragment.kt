@@ -15,6 +15,7 @@ import com.dhxxn17.escape96app.R
 import com.dhxxn17.escape96app.data.Theme
 import com.dhxxn17.escape96app.databinding.FragmentHomeBinding
 import com.dhxxn17.escape96app.ui.base.BaseFragment
+import com.dhxxn17.escape96app.ui.toVisibility
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,6 +37,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun init() {
 
         with(requireDataBinding()) {
+            swipeRefreshLayout.setOnRefreshListener {
+                viewModel.getAllThemeList()
+                swipeRefreshLayout.isRefreshing = false
+            }
+
             homeThemeList.adapter = adapter
             adapter.apply { onClick = this@HomeFragment::goToDetail }
 
@@ -55,6 +61,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                         isTop = false
                     }
                 }
+
+                if (!viewModel.entireProgressVisible.value!!) {
+                    if (!scrollView.canScrollVertically(1)) {
+                        viewModel.loadMore()
+                    }
+                }
             }
         }
 
@@ -66,6 +78,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         with(viewModel) {
             themeList.observe(viewLifecycleOwner) {
                 adapter.updateData(it)
+            }
+
+            errorMessage.observe(viewLifecycleOwner) {
+                showToast(it)
+            }
+
+            entireProgressVisible.observe(viewLifecycleOwner) {
+                requireDataBinding().homeProgressBar.visibility = it.toVisibility()
             }
         }
 

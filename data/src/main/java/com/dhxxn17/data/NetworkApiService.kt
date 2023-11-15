@@ -5,11 +5,15 @@ import com.dhxxn17.data.model.ResponseThemes
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface NetworkApiService {
     // 전체 테마 조회
     @GET("/api/themes")
-    suspend fun getAllThemes(): Response<ResponseThemes>
+    suspend fun getAllThemes(
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ): Response<ResponseThemes>
 
     // 개별 테마 조회
     @GET("/api/themes/{themeId}")
