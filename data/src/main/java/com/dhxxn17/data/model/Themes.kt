@@ -5,6 +5,7 @@ data class ResponseThemes(
 )
 
 data class Themes(
+    val id: Int,
     val title: String,
     val location: String,
     val thumbnail: String
