@@ -3,7 +3,10 @@ package com.dhxxn17.escape96app.ui.pages.detail
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -17,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_detail) {
 
     private val args : DetailFragmentArgs by navArgs()
-    private var data: Theme? = null
+    private val viewModel by activityViewModels<DetailViewModel>()
     override fun onCreateBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -28,40 +31,48 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
     }
 
     override fun init() {
-        val theme = args.value.toCollection(ArrayList())[0]
-        setUi(theme)
+        val themeId = args.value
+        viewModel.getThemeDetail(themeId)
+        observeData()
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putParcelable("data", args.value[0])
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        if (savedInstanceState != null) {
-            data = savedInstanceState.getParcelable<Theme>("data")
+    private fun observeData() {
+        with(viewModel) {
+            theme.observe(viewLifecycleOwner) {
+                setUi(it)
+            }
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        data?.let { setUi(it) }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        with(requireDataBinding()) {
+            backBtn.setOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun setUi(theme: Theme) {
         with(requireDataBinding()) {
-            detailThemeStore.text = theme.location
+            detailThemeStore.text = theme.store
             detailThemeTitle.text = theme.title
             Glide.with(requireContext())
                 .load(theme.thumbnail)
                 .fitCenter()
                 .into(detailThemeImg)
             detailThemeImg.clipToOutline = true
+            detailThemePlaytime.text = "${theme.playTime}분"
+            detailThemeGenre.text = theme.genre
 
-            backBtn.setOnClickListener {
-                findNavController().popBackStack()
+            if (theme.recommendedPeople.isNotEmpty()) {
+                detailThemePeople.text = theme.recommendedPeople
+            } else {
+                detailThemePeople.isVisible = false
+                detailThemePeopleText.isVisible = false
             }
+
         }
     }
 

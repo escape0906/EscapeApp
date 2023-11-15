@@ -30,7 +30,7 @@
 
         <argument
             android:name="value"
-            app:argType="com.dhxxn17.escape96app.data.Theme[]"/>
+            app:argType="integer"/>
 
     </fragment>
 

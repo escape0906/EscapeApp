@@ -13,7 +13,7 @@ import com.dhxxn17.escape96app.data.Theme
 class ThemeAdapter : RecyclerView.Adapter<ThemeAdapter.ThemeViewHolder>() {
 
     private val list = mutableListOf<Theme>()
-    var onClick: (Theme) -> Unit = {}
+    var onClick: (Int) -> Unit = {}
 
     fun updateData(themes: List<Theme>) {
         this.list.clear()
@@ -33,7 +33,7 @@ class ThemeAdapter : RecyclerView.Adapter<ThemeAdapter.ThemeViewHolder>() {
     override fun onBindViewHolder(holder: ThemeAdapter.ThemeViewHolder, position: Int) {
         val result = list[position]
         holder.bind(result)
-        holder.itemView.setOnClickListener { onClick(result) }
+        holder.itemView.setOnClickListener { onClick(result.id) }
     }
 
     override fun getItemCount(): Int {

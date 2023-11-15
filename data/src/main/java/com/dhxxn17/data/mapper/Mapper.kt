@@ -1,5 +1,6 @@
 package com.dhxxn17.data.mapper
 
+import com.dhxxn17.data.model.ResponseTheme
 import com.dhxxn17.data.model.ResponseThemes
 import com.dhxxn17.domain.NetworkResponse
 import com.dhxxn17.domain.model.Theme
@@ -19,6 +20,31 @@ fun listMapper(
                         thumbnail = it.thumbnail
                     )
                 }
+            )
+        }
+    }
+    return NetworkResponse.ApiError(
+        message = response.message(),
+        code = response.code()
+    )
+}
+
+fun themeMapper(
+    response: Response<ResponseTheme>
+): NetworkResponse<Theme> {
+    if(response.isSuccessful) {
+        response.body()?.let {
+            return NetworkResponse.Success(
+                body = Theme(
+                    id = it.id,
+                    title = it.title,
+                    thumbnail = it.thumbnail,
+                    genre = it.genre,
+                    store = it.store,
+                    playTime = it.playTime,
+                    recommendedPeople = it.recommendedPeople,
+                    maximumPeople = it.maximumPeople
+                )
             )
         }
     }

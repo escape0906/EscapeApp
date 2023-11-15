@@ -50,9 +50,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     }
 
-    private fun goToDetail(theme: Theme) {
-        val item = arrayListOf<Theme>(theme)
-       requireView().findNavController().navigate( HomeFragmentDirections.actionHomeToDetailFragment(item.toTypedArray()))
+    private fun goToDetail(themeId: Int) {
+       requireView().findNavController().navigate( HomeFragmentDirections.actionHomeToDetailFragment(themeId))
     }
 
 }

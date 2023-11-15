@@ -35,6 +35,7 @@ class HomeViewModel @Inject constructor(
                 is NetworkResponse.Success -> {
                     val list = response.body.map {
                         Theme(
+                            id = it.id,
                             title = it.title,
                             location = it.location,
                             thumbnail = it.thumbnail
