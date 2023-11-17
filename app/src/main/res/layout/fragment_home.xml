@@ -91,7 +91,7 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:inputType="text"
-                            android:hint="테마를 검색해보세요"
+                            android:hint="테마/매장이름을 검색해보세요"
                             android:background="@color/transparent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"

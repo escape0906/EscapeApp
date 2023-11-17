@@ -1,12 +1,17 @@
 package com.dhxxn17.escape96app.ui.pages.home
 
 import android.graphics.Typeface
+import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableStringBuilder
+import android.text.TextWatcher
 import android.text.style.StyleSpan
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -68,6 +73,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                     }
                 }
             }
+
+            etSearch.setOnEditorActionListener { _, actionId, event ->
+                if (actionId == EditorInfo.IME_ACTION_DONE
+                    || event.keyCode == KeyEvent.KEYCODE_ENTER
+                    && event.action == KeyEvent.ACTION_DOWN) {
+                    goToSearch(etSearch.text.toString())
+                    return@setOnEditorActionListener true
+                }
+                false
+            }
         }
 
         observeData()
@@ -93,6 +108,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private fun goToDetail(themeId: Int) {
        requireView().findNavController().navigate( HomeFragmentDirections.actionHomeToDetailFragment(themeId))
+    }
+
+    private fun goToSearch(input: String) {
+        requireView().findNavController().navigate(
+            HomeFragmentDirections.actionHomeToSearchFragment(input)
+        )
     }
 
 }

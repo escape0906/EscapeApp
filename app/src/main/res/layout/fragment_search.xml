@@ -8,13 +8,14 @@
 
         <ImageView
             android:id="@+id/btn_back"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="4dp"
-            android:padding="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_back" />
+            app:srcCompat="@drawable/ic_back"
+            app:tint="@color/text" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -35,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="테마를 검색해보세요"
+                android:hint="테마/매장이름을 검색해보세요"
                 android:background="@color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +63,6 @@
                     android:id="@+id/search_result_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:orientation="vertical">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -102,38 +102,16 @@
                         app:spanCount="2"
                         tools:listitem="@layout/item_theme"/>
 
-                </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/search_recent_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
+                    <ProgressBar
+                        android:id="@+id/search_progressBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="최근 검색어"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/notosanssemibold"
-                        android:includeFontPadding="false"
-                        android:textColor="@color/black"/>
+                        android:layout_gravity="center"
+                        android:visibility="gone"
+                        style="?android:attr/progressBarStyle"/>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/search_recent_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:overScrollMode="never"
-                        android:nestedScrollingEnabled="false"
-                        android:paddingBottom="20dp"
-                        android:clipToPadding="false"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        tools:listitem="@layout/item_chip"/>
                 </LinearLayout>
-
-
-
 
             </LinearLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
