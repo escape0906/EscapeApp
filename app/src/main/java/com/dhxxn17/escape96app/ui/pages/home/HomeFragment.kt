@@ -1,6 +1,5 @@
 package com.dhxxn17.escape96app.ui.pages.home
 
-import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -9,8 +8,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dhxxn17.escape96app.R
 import com.dhxxn17.escape96app.databinding.FragmentHomeBinding
@@ -49,7 +46,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             adapter.apply { onClick = this@HomeFragment::goToDetail }
 
             scrollTopButton.setOnClickListener {
-                homeThemeList.smoothScrollToPosition(0)
                 scrollView.smoothScrollTo(0, 0)
             }
 
@@ -81,6 +77,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 }
                 false
             }
+
+            if (viewModel.scrollPosition.value != -1) {
+                scrollView.smoothScrollTo(0, viewModel.scrollPosition.value ?: 0)
+            }
+
+            byStore.setOnClickListener {
+                requireView().findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToStoreFragment()
+                )
+            }
         }
 
         observeData()
@@ -105,6 +111,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun goToDetail(themeId: Int) {
+        viewModel.setScrollPosition(requireDataBinding().scrollView.scrollY)
        requireView().findNavController().navigate( HomeFragmentDirections.actionHomeToDetailFragment(themeId))
     }
 
