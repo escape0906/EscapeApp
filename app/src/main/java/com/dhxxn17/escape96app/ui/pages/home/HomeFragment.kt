@@ -1,26 +1,21 @@
 package com.dhxxn17.escape96app.ui.pages.home
 
-import android.graphics.Typeface
-import android.text.Editable
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.TextWatcher
-import android.text.style.StyleSpan
+import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dhxxn17.escape96app.R
-import com.dhxxn17.escape96app.data.Theme
 import com.dhxxn17.escape96app.databinding.FragmentHomeBinding
 import com.dhxxn17.escape96app.ui.base.BaseFragment
-import com.dhxxn17.escape96app.ui.toVisibility
+import com.dhxxn17.escape96app.ui.util.toVisibility
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,13 +35,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     override fun init() {
-
         with(requireDataBinding()) {
             swipeRefreshLayout.setOnRefreshListener {
                 viewModel.getAllThemeList()
                 swipeRefreshLayout.isRefreshing = false
             }
 
+            if (!adapter.hasObservers()) {
+                adapter.setHasStableIds(true)
+            }
+            homeThemeList.setHasFixedSize(true)
             homeThemeList.adapter = adapter
             adapter.apply { onClick = this@HomeFragment::goToDetail }
 
