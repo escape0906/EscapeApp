@@ -17,7 +17,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_back" />
+            app:srcCompat="@drawable/ic_back"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
 
         <TextView
             android:id="@+id/theme_title"
@@ -69,6 +70,7 @@
             android:layout_marginTop="8dp"
             android:contentDescription=""
             android:src="@drawable/ic_filter"
+            android:background="?attr/selectableItemBackgroundBorderless"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_layout" />
 
@@ -79,6 +81,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="조건 추가"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/filter_btn"
