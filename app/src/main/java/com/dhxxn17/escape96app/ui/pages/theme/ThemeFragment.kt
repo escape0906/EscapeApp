@@ -1,10 +1,13 @@
 package com.dhxxn17.escape96app.ui.pages.theme
 
+import android.content.Context
 import android.view.KeyEvent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import androidx.fragment.app.activityViewModels
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.dhxxn17.escape96app.R
@@ -17,8 +20,22 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ThemeFragment :BaseFragment<FragmentThemeBinding>(R.layout.fragment_theme) {
 
-    private val viewModel by activityViewModels<ThemeViewModel>()
+    private val viewModel by viewModels<ThemeViewModel>()
     private val adapter = ThemeAdapter()
+    private lateinit var callback: OnBackPressedCallback
+    private var isBackPressed = false
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                onBackPressClicked()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
 
     override fun onCreateBinding(
         inflater: LayoutInflater,
@@ -31,8 +48,12 @@ class ThemeFragment :BaseFragment<FragmentThemeBinding>(R.layout.fragment_theme)
 
     override fun init() {
         with(requireDataBinding()) {
+            if(etSearch.text.isEmpty()) {
+                emptyText.text = "테마 이름을 검색해보세요 !"
+            }
+
             backBtn.setOnClickListener {
-                findNavController().popBackStack()
+                onBackPressClicked()
             }
 
             swipeRefreshLayout.setOnRefreshListener {
@@ -66,7 +87,15 @@ class ThemeFragment :BaseFragment<FragmentThemeBinding>(R.layout.fragment_theme)
     private fun observeData() {
         with(viewModel) {
             resultList.observe(viewLifecycleOwner) {
-                adapter.updateData(it)
+                if (it.isEmpty()) {
+                    requireDataBinding().themeList.visibility = View.GONE
+                    requireDataBinding().emptyLayout.visibility = View.VISIBLE
+                    requireDataBinding().emptyText.text = "검색결과가 없습니다"
+                } else {
+                    requireDataBinding().themeList.visibility = View.VISIBLE
+                    requireDataBinding().emptyLayout.visibility = View.GONE
+                    adapter.updateData(it)
+                }
             }
 
             errorMessage.observe(viewLifecycleOwner) {
@@ -81,5 +110,21 @@ class ThemeFragment :BaseFragment<FragmentThemeBinding>(R.layout.fragment_theme)
 
     private fun goToDetail(themeId: Int) {
         requireView().findNavController().navigate( ThemeFragmentDirections.actionThemeFragmentToDetailFragment(themeId))
+    }
+
+    private fun onBackPressClicked() {
+        isBackPressed = true
+        findNavController().popBackStack()
+    }
+
+    override fun onDestroyView() {
+        if (isBackPressed) {
+            with(viewModel) {
+                resultList.removeObservers(viewLifecycleOwner)
+                searchQuery.removeObservers(viewLifecycleOwner)
+                totalCount.removeObservers(viewLifecycleOwner)
+            }
+        }
+        super.onDestroyView()
     }
 }
