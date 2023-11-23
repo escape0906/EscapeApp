@@ -20,6 +20,12 @@
         <action
             android:id="@+id/actionHomeToMyFragment"
             app:destination="@+id/myFragment"/>
+        <action
+            android:id="@+id/action_homeFragment_to_storeFragment"
+            app:destination="@id/storeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_themeFragment"
+            app:destination="@id/themeFragment" />
 
     </fragment>
 
@@ -54,6 +60,28 @@
         android:name="com.dhxxn17.escape96app.ui.pages.my.MyFragment"
         android:label="MyFragment">
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/storeFragment"
+        android:name="com.dhxxn17.escape96app.ui.pages.store.StoreFragment"
+        android:label="storeFragment">
+
+
+        <action
+            android:id="@+id/action_storeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/themeFragment"
+        android:name="com.dhxxn17.escape96app.ui.pages.theme.ThemeFragment"
+        android:label="ThemeFragment">
+
+
+        <action
+            android:id="@+id/action_themeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
 
 </navigation>
