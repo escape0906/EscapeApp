@@ -87,6 +87,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                     HomeFragmentDirections.actionHomeFragmentToStoreFragment()
                 )
             }
+
+            byTheme.setOnClickListener {
+                requireView().findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToThemeFragment()
+                )
+            }
         }
 
         observeData()

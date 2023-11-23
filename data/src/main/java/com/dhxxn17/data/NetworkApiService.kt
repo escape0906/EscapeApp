@@ -28,4 +28,15 @@ interface NetworkApiService {
         @Query("page") page: Int,
         @Query("size") size: Int
     ): Response<ResponseSearch>
+
+    // 테마 단독 검색
+    @GET("themes/search")
+    suspend fun requestSearchTheme(
+        @Query("type") type: String = "title",
+        @Query("keyword") keyword: String,
+        @Query("page") page: Int,
+        @Query("size") size: Int,
+        @Query("difficult") difficult: Int? = null,
+        @Query("address") address: String? = null
+    ): Response<ResponseSearch>
 }

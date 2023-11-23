@@ -11,13 +11,8 @@ import androidx.navigation.fragment.navArgs
 import com.dhxxn17.escape96app.R
 import com.dhxxn17.escape96app.databinding.FragmentSearchBinding
 import com.dhxxn17.escape96app.ui.base.BaseFragment
-import com.dhxxn17.escape96app.ui.pages.home.HomeFragmentDirections
 import com.dhxxn17.escape96app.ui.pages.home.ThemeAdapter
-import com.dhxxn17.escape96app.ui.toVisibility
-import com.google.android.flexbox.AlignItems
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexWrap
-import com.google.android.flexbox.FlexboxLayoutManager
+import com.dhxxn17.escape96app.ui.util.toVisibility
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

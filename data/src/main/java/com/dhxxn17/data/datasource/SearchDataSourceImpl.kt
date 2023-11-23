@@ -18,4 +18,14 @@ class SearchDataSourceImpl @Inject constructor(
             apiService.requestSearchStore(store = input, page = page, size = size)
         )
     }
+
+    override suspend fun requestSearchTheme(
+        input: String,
+        page: Int,
+        size: Int
+    ): NetworkResponse<ResponseSearchList> {
+        return searchListMapper(
+            apiService.requestSearchTheme(keyword = input, page = page, size = size)
+        )
+    }
 }

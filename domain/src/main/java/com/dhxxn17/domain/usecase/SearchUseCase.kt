@@ -12,4 +12,8 @@ class SearchUseCase @Inject constructor(
     suspend fun requestSearchStore(input: String, page: Int, size: Int): NetworkResponse<ResponseSearchList> {
         return searchRepository.requestSearchStore(input, page, size)
     }
+
+    suspend fun requestSearchTheme(input: String, page: Int, size: Int): NetworkResponse<ResponseSearchList> {
+        return searchRepository.requestSearchTheme(input, page, size)
+    }
 }

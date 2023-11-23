@@ -16,4 +16,12 @@ class SearchRepositoryImpl @Inject constructor(
     ): NetworkResponse<ResponseSearchList> {
         return searchDataSource.requestSearchStore(input, page, size)
     }
+
+    override suspend fun requestSearchTheme(
+        input: String,
+        page: Int,
+        size: Int
+    ): NetworkResponse<ResponseSearchList> {
+        return searchDataSource.requestSearchTheme(input, page, size)
+    }
 }
