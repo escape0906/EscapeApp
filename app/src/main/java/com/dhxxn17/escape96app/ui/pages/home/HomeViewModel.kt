@@ -32,6 +32,10 @@ class HomeViewModel @Inject constructor(
     val entireProgressVisible: LiveData<Boolean>
         get() = _entireProgressVisible
 
+    private val _scrollPosition = MutableLiveData<Int>(-1)
+    val scrollPosition: LiveData<Int>
+        get() = _scrollPosition
+
     init {
         getAllThemeList()
     }
@@ -117,5 +121,9 @@ class HomeViewModel @Inject constructor(
                 _entireProgressVisible.postValue(false)
             }
         }
+    }
+
+    fun setScrollPosition(position: Int) {
+        _scrollPosition.postValue(position)
     }
 }

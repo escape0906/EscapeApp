@@ -20,7 +20,8 @@
     <color name="tea_green">#DBF3C9</color>
     <color name="lime">#C3F550</color>
 
-    <color name="text">#67C2A3</color>
+    <color name="primary_color">#67C2A3</color>
+    <color name="test">#D6AD7B</color>
 
     <color name="light_gray_01">#F5F5F5</color>
     <color name="light_gray_02">#FAFAFA</color>

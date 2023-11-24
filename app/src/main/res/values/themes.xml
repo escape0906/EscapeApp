@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Escape96App" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:statusBarColor">@color/text</item>
+        <item name="android:statusBarColor">@color/primary_color</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
 

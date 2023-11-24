@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/back_btn"
@@ -14,6 +14,7 @@
             android:layout_height="25dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:background="?attr/selectableItemBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back"
@@ -35,7 +36,9 @@
                 <ImageView
                     android:id="@+id/detail_theme_img"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="300dp"
+                    app:tint="#27000000"
+                    android:tintMode="src_atop"
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <TextView
@@ -50,17 +53,38 @@
                     android:textColor="@color/light_gray_06"
                     android:textSize="13sp" />
 
-                <TextView
-                    android:id="@+id/detail_theme_title"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginVertical="5dp"
-                    android:fontFamily="@font/notosansregular"
-                    android:includeFontPadding="false"
-                    android:text="세렌디피티(Serendipity)"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/detail_theme_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="5dp"
+                        android:fontFamily="@font/notosansregular"
+                        android:includeFontPadding="false"
+                        android:text="세렌디피티(Serendipity)"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:alpha="0.4"
+                        android:background="@color/primary_color"
+                        app:layout_constraintBottom_toBottomOf="@+id/detail_theme_title"
+                        app:layout_constraintEnd_toEndOf="@+id/detail_theme_title"
+                        app:layout_constraintStart_toStartOf="@+id/detail_theme_title"
+                        app:layout_constraintTop_toTopOf="@+id/detail_theme_title"
+                        app:layout_constraintVertical_bias="1.0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!--                <TextView-->
                 <!--                    android:id="@+id/detail_theme_level"-->
@@ -155,48 +179,93 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_marginTop="20dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:backgroundTint="@color/light_gray_05"
+                        android:text="찜"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:text="찜" />
+                        android:textSize="16sp" />
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
+                        android:layout_marginStart="10dp"
+                        android:backgroundTint="@color/test"
                         android:text="완료"
                         android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:layout_marginStart="10dp"
-                        android:backgroundTint="@color/text"/>
+                        android:textSize="16sp" />
+
                 </LinearLayout>
 
-                <!--                <TextView-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:text="이 스토어의 다른 테마"-->
-                <!--                    android:textColor="@color/black"-->
-                <!--                    android:layout_marginHorizontal="10dp"-->
-                <!--                    android:textSize="18sp"-->
-                <!--                    android:fontFamily="@font/notosansmedium"-->
-                <!--                    android:includeFontPadding="false"/>-->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/light_gray_04"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="30dp"/>
 
-                <!--                <androidx.recyclerview.widget.RecyclerView-->
-                <!--                    android:id="@+id/detail_store_theme_list"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    tools:listitem="@layout/item_theme_horizontal"-->
-                <!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-                <!--                    android:orientation="horizontal"/>-->
+                <TextView
+                    android:id="@+id/detail_store_theme_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:fontFamily="@font/notosansmedium"
+                    android:includeFontPadding="false"
+                    android:text="이 스토어의 다른 테마"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/detail_store_theme_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_theme_horizontal" />
+
 
             </LinearLayout>
         </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/reserve_btn"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/round_rectangle"
+                android:backgroundTint="@color/primary_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/reserve_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약 링크 가기"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toStartOf="@+id/view"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

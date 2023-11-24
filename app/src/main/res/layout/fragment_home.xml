@@ -8,6 +8,37 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
+        <LinearLayout
+            android:id="@+id/topbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/chab"
+                android:text="@string/app_name_title"
+                android:textColor="@color/primary_color"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:id="@+id/mypage_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="마이페이지 버튼"
+                android:src="@drawable/ic_my" />
+
+        </LinearLayout>
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"
             android:layout_width="0dp"
@@ -15,7 +46,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/topbar_layout">
 
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/scroll_view"
@@ -28,32 +59,29 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/chab"
-                            android:text="@string/app_name_title"
-                            android:textColor="@color/text"
-                            android:textSize="25sp" />
-
-                    </LinearLayout>
-
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+
+                        <View
+                            android:layout_width="110dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="5dp"
+                            android:alpha="0.4"
+                            android:background="@color/primary_color"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.78" />
 
                         <TextView
                             android:id="@+id/home_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
+                            android:layout_marginStart="4dp"
                             android:fontFamily="@font/notosansextralight"
                             android:includeFontPadding="false"
                             android:text="취향에 맞는\n방탈출 테마를 찾아보세요!"
@@ -61,10 +89,10 @@
                             android:textSize="23sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.529" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
+                            android:id="@+id/imageView3"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:src="@drawable/dinosaur"
@@ -72,8 +100,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="1.0"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.0" />
+                            app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,10 +108,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:padding="10dp"
-                        android:background="@drawable/round_rectange">
+                        android:background="@drawable/round_rectangle">
 
                         <EditText
                             android:id="@+id/et_search"

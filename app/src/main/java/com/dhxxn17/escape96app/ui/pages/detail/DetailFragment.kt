@@ -1,5 +1,7 @@
 package com.dhxxn17.escape96app.ui.pages.detail
 
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -51,6 +53,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
             backBtn.setOnClickListener {
                 findNavController().popBackStack()
             }
+            backBtn.bringToFront()
         }
     }
 
@@ -60,18 +63,39 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
             detailThemeTitle.text = theme.title
             Glide.with(requireContext())
                 .load(theme.thumbnail)
-                .fitCenter()
+                .centerCrop()
                 .into(detailThemeImg)
-            detailThemeImg.clipToOutline = true
-            detailThemePlaytime.text = "${theme.playTime}분"
-            detailThemeGenre.text = theme.genre
+//            detailThemeImg.setColorFilter(Color.parseColor("#ffff0000"), PorterDuff.Mode.SRC_IN)
 
+            // 추천인원 없으면 미노출
             if (theme.recommendedPeople.isNotEmpty()) {
                 detailThemePeople.text = theme.recommendedPeople
             } else {
-                detailThemePeople.isVisible = false
-                detailThemePeopleText.isVisible = false
+                detailThemePeople.visibility = View.GONE
+                detailThemePeopleText.visibility = View.GONE
             }
+
+            // 장르 없으면 미노출
+            if (theme.genre.trim().isEmpty()) {
+                detailThemeGenre.visibility = View.GONE
+                detailThemeGenreText.visibility = View.GONE
+            } else {
+                detailThemeGenre.visibility = View.VISIBLE
+                detailThemeGenreText.visibility = View.VISIBLE
+                detailThemeGenre.text = theme.genre
+            }
+
+            // 플레이시간 없으면 미노출
+            if (theme.playTime != 0) {
+                detailThemePlaytime.visibility = View.GONE
+                detailThemePlaytimeText.visibility = View.GONE
+            } else {
+                detailThemePlaytime.text = "${theme.playTime}분"
+                detailThemePlaytime.visibility = View.VISIBLE
+                detailThemePlaytimeText.visibility = View.VISIBLE
+            }
+
+            // TODO 같은 매장 다른 테마
 
         }
     }

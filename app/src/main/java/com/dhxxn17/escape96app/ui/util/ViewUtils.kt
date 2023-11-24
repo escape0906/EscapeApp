@@ -1,4 +1,4 @@
-package com.dhxxn17.escape96app.ui
+package com.dhxxn17.escape96app.ui.util
 
 import android.view.View
 

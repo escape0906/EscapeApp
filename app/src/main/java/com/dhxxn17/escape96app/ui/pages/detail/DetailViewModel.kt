@@ -1,6 +1,5 @@
 package com.dhxxn17.escape96app.ui.pages.detail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -31,7 +30,6 @@ class DetailViewModel @Inject constructor(
             val response = detailUseCase.getThemeDetail(id)
             when(response) {
                 is NetworkResponse.Success -> {
-                    Log.d("!!!!!!!!", "NetworkResponse Success")
                     val data = Theme(
                         id = response.body.id,
                         title = response.body.title,
@@ -42,19 +40,15 @@ class DetailViewModel @Inject constructor(
                         recommendedPeople = response.body.recommendedPeople,
                         maximumPeople = response.body.maximumPeople
                     )
-                    Log.d("!!!!!!!!", "Theme :: ${data}")
                     _theme.postValue(data)
                 }
                 is NetworkResponse.ApiError -> {
-                    Log.d("!!!!!!!!", "NetworkResponse ApiError")
                     _message.postValue(response.message)
                 }
                 is NetworkResponse.NetworkError -> {
-                    Log.d("!!!!!!!!", "NetworkResponse NetworkError")
                     _message.postValue("네트워크를 확인해주세요")
                 }
                 else -> {
-                    Log.d("!!!!!!!!", "NetworkResponse Else")
                     _message.postValue("잘못된 검색어입니다.")
                 }
             }

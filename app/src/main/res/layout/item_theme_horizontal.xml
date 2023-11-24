@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:layout_gravity="center"
-        android:background="@drawable/round_rectange"
+        android:background="@drawable/round_rectangle"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
