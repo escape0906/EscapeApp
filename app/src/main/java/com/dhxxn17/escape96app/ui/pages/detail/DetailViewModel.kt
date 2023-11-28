@@ -21,14 +21,22 @@ class DetailViewModel @Inject constructor(
         get() = _theme
 
     private val _message = MutableLiveData<String>()
-    val errorMessage: LiveData<String>
+    val message: LiveData<String>
         get() = _message
+
+    private val _isLiked = MutableLiveData<Boolean>()
+    val isLiked: LiveData<Boolean>
+        get() = _isLiked
+
+    private val _isSuccessed = MutableLiveData<Boolean>()
+    val isSuccessed: LiveData<Boolean>
+        get() = _isSuccessed
 
 
     fun getThemeDetail(id: Int) {
         viewModelScope.launch {
             val response = detailUseCase.getThemeDetail(id)
-            when(response) {
+            when (response) {
                 is NetworkResponse.Success -> {
                     val data = Theme(
                         id = response.body.id,
@@ -42,14 +50,105 @@ class DetailViewModel @Inject constructor(
                     )
                     _theme.postValue(data)
                 }
+
                 is NetworkResponse.ApiError -> {
                     _message.postValue(response.message)
                 }
+
                 is NetworkResponse.NetworkError -> {
                     _message.postValue("네트워크를 확인해주세요")
                 }
+
                 else -> {
                     _message.postValue("잘못된 검색어입니다.")
+                }
+            }
+        }
+    }
+
+    fun getIsLikeNSuccess(id: Int) {
+        viewModelScope.launch {
+            val isLike = detailUseCase.getIsLike(id)
+            val isSuccess = detailUseCase.getIsSuccess(id)
+
+            _isLiked.postValue(isLike)
+            _isSuccessed.postValue(isSuccess)
+        }
+    }
+
+    fun addLikeTheme() {
+        viewModelScope.launch {
+             _theme.value?.let {
+                val isDone = detailUseCase.addLike(
+                    com.dhxxn17.domain.model.Theme(
+                        id = it.id,
+                        title = it.title,
+                        thumbnail = it.thumbnail
+                    )
+                )
+
+                if (isDone > 0) {
+                    _isLiked.postValue(true)
+                    _message.postValue("찜에 추가하였습니다.")
+                } else {
+                    _message.postValue("실패하였습니다. 잠시 후 다시 시도해주세요!")
+                }
+            }
+
+        }
+    }
+
+    fun deleteLikeTheme() {
+        viewModelScope.launch {
+            _theme.value?.let {
+                val isDone = detailUseCase.deleteLike(
+                    it.id
+                )
+
+                if (isDone > 0) {
+                    _isLiked.postValue(false)
+                    _message.postValue("찜에서 삭제하였습니다.")
+                } else {
+                    _message.postValue("실패하였습니다. 잠시 후 다시 시도해주세요!")
+                }
+            }
+        }
+    }
+
+    fun addSuccessTheme() {
+        viewModelScope.launch {
+            _theme.value?.let {
+                val isDone = detailUseCase.addSuccess(
+                    com.dhxxn17.domain.model.Theme(
+                        id = it.id,
+                        title = it.title,
+                        thumbnail = it.thumbnail
+                    )
+                )
+
+                if (isDone > 0) {
+                    _isSuccessed.postValue(true)
+                    _message.postValue("완료에 추가하였습니다.")
+                } else {
+                    _message.postValue("실패하였습니다. 잠시 후 다시 시도해주세요!")
+                }
+            }
+
+        }
+    }
+
+    fun deleteSuccessTheme() {
+        viewModelScope.launch {
+            _theme.value?.let {
+                val isDone = detailUseCase.deleteSuccess(
+                    it.id
+                )
+
+                if (isDone > 0) {
+                    _isSuccessed.postValue(false)
+                    _message.postValue("완료에서 삭제하였습니다.")
+                } else {
+                    _message.postValue("실패하였습니다. 잠시 후 다시 시도해주세요!")
                 }
             }
         }

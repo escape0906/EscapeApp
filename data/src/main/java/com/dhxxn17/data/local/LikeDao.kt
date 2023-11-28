@@ -12,8 +12,12 @@ interface LikeDao {
     fun getAllLikes(): List<LikeData>
 
     @Insert
-    fun addLike(data: LikeData)
+    fun addLike(data: LikeData): Long
 
-    @Delete
-    fun deleteLike(data: LikeData)
+    @Query("DELETE FROM LikeData WHERE themeId = :themeId")
+    fun deleteLike(themeId: Int): Int
+
+    @Query(value = "SELECT EXISTS (SELECT 1 FROM LikeData WHERE themeId = :dataId)")
+    fun getIsLike(dataId: Int): Boolean
+
 }

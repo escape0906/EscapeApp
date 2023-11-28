@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.dhxxn17.data.local.AppDatabase
 import com.dhxxn17.data.local.AppDatabase.Companion.DB_NAME
 import com.dhxxn17.data.local.LikeDao
+import com.dhxxn17.data.local.SuccessDao
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -36,4 +37,8 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideLikeDao(appDatabase: AppDatabase): LikeDao = appDatabase.likeDao()
+
+    @Provides
+    @Singleton
+    fun provideSuccessDao(appDatabase: AppDatabase): SuccessDao = appDatabase.successDao()
 }

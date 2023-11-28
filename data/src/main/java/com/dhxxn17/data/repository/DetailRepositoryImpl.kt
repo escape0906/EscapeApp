@@ -12,4 +12,28 @@ class DetailRepositoryImpl @Inject constructor(
     override suspend fun getThemeDetail(id: Int): NetworkResponse<Theme> {
         return detailThemeDataSource.getThemeDetail(id)
     }
+
+    override suspend fun getIsLike(id: Int): Boolean {
+        return detailThemeDataSource.getIsLike(id)
+    }
+
+    override suspend fun getIsSuccess(id: Int): Boolean {
+        return detailThemeDataSource.getIsSuccess(id)
+    }
+
+    override suspend fun addLike(data: Theme): Long {
+        return detailThemeDataSource.addLike(data)
+    }
+
+    override suspend fun addSuccess(data: Theme): Long {
+        return detailThemeDataSource.addSuccess(data)
+    }
+
+    override suspend fun deleteLike(themeId: Int): Int {
+        return detailThemeDataSource.deleteLike(themeId)
+    }
+
+    override suspend fun deleteSuccess(themeId: Int): Int {
+        return detailThemeDataSource.deleteSuccess(themeId)
+    }
 }

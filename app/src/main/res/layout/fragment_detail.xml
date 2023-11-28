@@ -183,21 +183,25 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/like_btn"
                         android:layout_width="wrap_content"
-                        android:layout_height="60dp"
+                        android:layout_height="50dp"
                         android:backgroundTint="@color/light_gray_05"
                         android:text="찜"
+                        android:background="@drawable/button_background"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/success_btn"
                         android:layout_width="wrap_content"
-                        android:layout_height="60dp"
+                        android:layout_height="50dp"
                         android:layout_marginStart="10dp"
                         android:backgroundTint="@color/test"
                         android:text="완료"
                         android:textColor="@color/white"
+                        android:background="@drawable/button_background"
                         android:textSize="16sp" />
 
                 </LinearLayout>
