@@ -1,8 +1,10 @@
 package com.dhxxn17.data.mapper
 
+import com.dhxxn17.data.model.LikeData
 import com.dhxxn17.data.model.ResponseSearch
 import com.dhxxn17.data.model.ResponseTheme
 import com.dhxxn17.data.model.ResponseThemes
+import com.dhxxn17.data.model.SuccessData
 import com.dhxxn17.domain.NetworkResponse
 import com.dhxxn17.domain.model.ResponseSearchList
 import com.dhxxn17.domain.model.ResponseThemeList
@@ -85,4 +87,28 @@ fun themeMapper(
         message = response.message(),
         code = response.code()
     )
+}
+
+fun likeMapper(
+    list: List<LikeData>
+): List<Theme> {
+    return list.map {
+        Theme(
+            id = it.themeId,
+            title = it.title,
+            thumbnail = it.thumbnailImg
+        )
+    }
+}
+
+fun successMapper(
+    list: List<SuccessData>
+): List<Theme> {
+    return list.map {
+        Theme(
+            id = it.themeId,
+            title = it.title,
+            thumbnail = it.thumbnailImg
+        )
+    }
 }

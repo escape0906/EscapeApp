@@ -4,13 +4,17 @@ import com.dhxxn17.data.datasource.DetailThemeDataSource
 import com.dhxxn17.data.datasource.DetailThemeDataSourceImpl
 import com.dhxxn17.data.datasource.HomeThemeDataSource
 import com.dhxxn17.data.datasource.HomeThemeDataSourceImpl
+import com.dhxxn17.data.datasource.MyDataSource
+import com.dhxxn17.data.datasource.MyDataSourceImpl
 import com.dhxxn17.data.datasource.SearchDataSource
 import com.dhxxn17.data.datasource.SearchDataSourceImpl
 import com.dhxxn17.data.repository.DetailRepositoryImpl
 import com.dhxxn17.data.repository.HomeRepositoryImpl
+import com.dhxxn17.data.repository.MyRepositoryImpl
 import com.dhxxn17.data.repository.SearchRepositoryImpl
 import com.dhxxn17.domain.repository.DetailRepository
 import com.dhxxn17.domain.repository.HomeRepository
+import com.dhxxn17.domain.repository.MyRepository
 import com.dhxxn17.domain.repository.SearchRepository
 import dagger.Binds
 import dagger.Module
@@ -57,4 +61,16 @@ abstract class DataModule {
     abstract fun bindSearchDataSource(
         source: SearchDataSourceImpl
     ): SearchDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindMyRepository(
+        repositoryImpl: MyRepositoryImpl
+    ): MyRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindMyDataSource(
+        sourceImpl: MyDataSourceImpl
+    ): MyDataSource
 }
