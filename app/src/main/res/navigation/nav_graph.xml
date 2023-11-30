@@ -60,6 +60,9 @@
         android:name="com.dhxxn17.escape96app.ui.pages.my.MyFragment"
         android:label="MyFragment">
 
+        <action
+            android:id="@+id/action_myFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
 
     <fragment
@@ -82,6 +85,24 @@
         <action
             android:id="@+id/action_themeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_themeFragment_to_filterFragment"
+            app:destination="@id/filterFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.dhxxn17.escape96app.ui.pages.filter.FilterFragment"
+        android:label="filterFragment">
+
+        <argument
+            android:name="location"
+            app:argType="string"/>
+
+        <argument
+            android:name="level"
+            app:argType="string"/>
+
     </fragment>
 
 </navigation>

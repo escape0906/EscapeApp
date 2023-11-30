@@ -36,6 +36,14 @@ class ThemeViewModel @Inject constructor(
     val errorMessage: LiveData<String>
         get() = _message
 
+    private val _location = MutableLiveData<String>()
+    val location: LiveData<String>
+        get() = _location
+
+    private val _level = MutableLiveData<String>()
+    val level: LiveData<String>
+        get() = _level
+
     private val PAGE_SIZE = 20
     private var page = 0
     private var isEnd = false
@@ -50,7 +58,9 @@ class ThemeViewModel @Inject constructor(
             val response = searchUseCase.requestSearchTheme(
                 input = input,
                 page = page,
-                size = PAGE_SIZE
+                size = PAGE_SIZE,
+                difficult = level.value,
+                address = location.value
             )
 
             when (response) {
@@ -92,10 +102,12 @@ class ThemeViewModel @Inject constructor(
             val currentList = _resultList.value
             viewModelScope.launch {
                 page++
-                val response = searchUseCase.requestSearchStore(
-                    _searchQuery.value ?: "",
-                    page,
-                    PAGE_SIZE
+                val response = searchUseCase.requestSearchTheme(
+                    input = searchQuery.value ?: "",
+                    page = page,
+                    size = PAGE_SIZE,
+                    difficult = level.value,
+                    address = location.value
                 )
 
                 when (response) {
@@ -133,5 +145,13 @@ class ThemeViewModel @Inject constructor(
                 _entireProgressVisible.postValue(false)
             }
         }
+    }
+
+    fun setLocationParams(params: String) {
+        _location.postValue(params)
+    }
+
+    fun setLevelParams(params: String) {
+        _level.postValue(params)
     }
 }

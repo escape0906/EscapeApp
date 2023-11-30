@@ -22,10 +22,12 @@ class SearchDataSourceImpl @Inject constructor(
     override suspend fun requestSearchTheme(
         input: String,
         page: Int,
-        size: Int
+        size: Int,
+        difficult: String?,
+        address: String?
     ): NetworkResponse<ResponseSearchList> {
         return searchListMapper(
-            apiService.requestSearchTheme(keyword = input, page = page, size = size)
+            apiService.requestSearchTheme(keyword = input, page = page, size = size, difficult = difficult, address = address)
         )
     }
 }

@@ -79,6 +79,14 @@ class ThemeFragment :BaseFragment<FragmentThemeBinding>(R.layout.fragment_theme)
                     viewModel.loadMore()
                 }
             }
+
+            filterBtn.setOnClickListener {
+                goToFilter()
+            }
+
+            filterTextBtn.setOnClickListener {
+                goToFilter()
+            }
         }
 
         observeData()
@@ -106,10 +114,30 @@ class ThemeFragment :BaseFragment<FragmentThemeBinding>(R.layout.fragment_theme)
                 requireDataBinding().searchProgressBar.visibility = it.toVisibility()
             }
         }
+
+        findNavController().currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<String>("location")
+            ?.observe(viewLifecycleOwner) {
+                viewModel.setLocationParams(it)
+                viewModel.requestSearchTheme(viewModel.searchQuery.value ?: "")
+            }
+
+        findNavController().currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<String>("level")
+            ?.observe(viewLifecycleOwner) {
+                viewModel.setLevelParams(it)
+                viewModel.requestSearchTheme(viewModel.searchQuery.value ?: "")
+            }
     }
 
     private fun goToDetail(themeId: Int) {
         requireView().findNavController().navigate( ThemeFragmentDirections.actionThemeFragmentToDetailFragment(themeId))
+    }
+
+    private fun goToFilter() {
+        requireView().findNavController().navigate(ThemeFragmentDirections.actionThemeFragmentToFilterFragment())
     }
 
     private fun onBackPressClicked() {
